@@ -67,6 +67,7 @@ button {
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 20px 20px rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
 
 #button:hover {
@@ -80,6 +81,7 @@ button {
 #button:disabled {
   cursor: default;
   filter: brightness(30%);
+  pointer-events: none;
 }
 
 /* Media Query: Tablet or smaller */
