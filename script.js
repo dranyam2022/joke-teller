@@ -1,6 +1,7 @@
 const button = document.getElementById("button");
 const audioElement = document.getElementById("audio");
 const apiUrl = "https://v2.jokeapi.dev/joke/Any?amount=5";
+const loading = document.querySelector(".fa-comment-dots");
 let jokesData = {};
 
 /* tell Joke function */
@@ -36,14 +37,10 @@ async function getJokes() {
 /* initial load runs getJokes function and store it to var jokesData*/
 getJokes();
 
-/* button.addEventListener("click", jokeTeller); */
-audioElement.addEventListener("ended", () => {
-  button.disabled = false;
-});
-
-button.addEventListener("click", jokeTeller);
 /* click button handler */
 async function jokeTeller() {
+  loading.classList.add("active");
+  button.disabled = true;
   if (jokesData.jokes.length > 0) {
     const source = jokesData.jokes.pop();
     let sourceText = "";
@@ -60,3 +57,10 @@ async function jokeTeller() {
   console.log(...jokesData.jokes);
   console.log(jokesData.jokes.length);
 }
+
+/* button.addEventListener("click", jokeTeller); */
+button.addEventListener("click", jokeTeller);
+audioElement.addEventListener("ended", () => {
+  button.disabled = false;
+  loading.classList.remove("active");
+});

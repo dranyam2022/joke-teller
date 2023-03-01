@@ -9,7 +9,6 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-  /* background-color: rgba(44, 114, 27, 0.596); */
 }
 
 body,
@@ -41,22 +40,30 @@ img {
 /* Styling */
 body {
   background-color: #45badd;
+  overflow: hidden;
 }
 
 .container {
-  background: url("./assets/robot.gif");
-  background-size: contain;
-  background-position: left center;
-  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-button {
+.robot {
+  background: url("./assets/robot.gif");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 50vh;
+  width: 50vw;
+  position: relative;
+}
+
+#button {
   cursor: pointer;
   outline: none;
   width: 20rem;
@@ -68,6 +75,7 @@ button {
   border-radius: 5px;
   box-shadow: 2px 2px 20px 20px rgba(0, 0, 0, 0.2);
   user-select: none;
+  z-index: 10;
 }
 
 #button:hover {
@@ -84,11 +92,33 @@ button {
   pointer-events: none;
 }
 
+.fa-comment-dots {
+  font-size: 8rem;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 57%;
+  top: 12%;
+  width: 5.6rem;
+  height: 5.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  transform-origin: bottom left;
+  transform: scale(0);
+  transition: transform 0.4s ease-out;
+}
+
+.fa-comment-dots.active {
+  transform: scale(1);
+}
+
 /* Media Query: Tablet or smaller */
 @media screen and (max-width: 1000px) {
   .container {
-    background-size: cover;
-    background-position: center center;
     box-shadow: 2px 2px 20px 20px rgba(0, 0, 0, 0.5);
+  }
+  .fa-comment-dots {
+    font-size: 5rem;
+    top: 18%;
   }
 }
